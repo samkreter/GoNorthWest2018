@@ -1,0 +1,13 @@
+{
+    "intercept": 81.50868931861169,
+    "coefficients": [
+        {
+            "name": "sugars",
+            "coefficient": -1.668617952169677
+        },
+        {
+            "name": "calories",
+            "coefficient": -0.2582258815082781
+        }
+    ]
+}

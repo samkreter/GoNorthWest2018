@@ -1,0 +1,22 @@
+{
+  "pipeline": {
+    "name": "model"
+  },
+  "transform": {
+    "image": "pskreter/train-req-model:multi-1",
+    "cmd": [
+      "/trainModel",
+      "-inFile=/pfs/training/training.csv",
+      "-outDir=/pfs/out"
+    ]
+  },
+  "parallelism_spec": {
+    "constant": "1"
+  },
+  "input": {
+    "atom": {
+      "repo": "training",
+      "glob": "/"
+    }
+  }
+}

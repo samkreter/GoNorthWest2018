@@ -1,0 +1,166 @@
+Introduction to Modern Data Science with Go
+The Meaning of Modern
+
+Sam Kreter
+Software Engineer - Microsoft
+Twitter: @samkreter
+Github: samkreter
+Email: samkreter@gmail.com
+
+* Notes
+
+The slides and code samples are available on [[https://github.com/samkreter/GoNorthWest2018]]
+
+
+
+* What Do We Mean by Modern
+ 
+1. Focus on the application
+2. Reproducability and Data Tracking
+3. Good Deployments
+
+
+
+
+* Agenda
+
+- Basic Data Science in Go
+- Data Versioning
+- Deploying
+- Scaling
+
+
+* Basic Data Science in Go
+
+
+* 
+
+.image img/GoVsPython.png 500 1000
+.caption _Image_ from [[https://qarea.com/blog/golang-web-development-better-than-python][QArea]]
+
+
+
+* The Data Set
+
+.image img/cereals.jpg _ 900
+.caption Data from [[https://www.kaggle.com/crawford/80-cereals][Kaggle]]
+
+
+* The Data
+
+    calories,sodium,fiber,carbo,sugars,potass,rating
+    70,130,10.000000,5.000000,6,280,68.402973
+    120,15,2.000000,8.000000,8,135,33.983679
+    70,260,9.000000,7.000000,5,320,59.425505
+    50,140,14.000000,8.000000,0,330,93.704912
+    110,200,1.000000,14.000000,8,-1,34.384843
+    110,180,1.500000,10.500000,10,70,29.509541
+    110,125,1.000000,11.000000,14,30,33.174094
+    130,210,2.000000,18.000000,8,100,37.038562
+    90,200,4.000000,15.000000,6,125,49.120253
+    90,210,5.000000,13.000000,5,190,53.313813
+    120,220,0.000000,12.000000,12,35,18.042851
+
+* Understanding the Data - Dataframes
+
+import "github.com/kniren/gota/dataframe"
+
+.code code/visualize/describe.go /func main()/,/^}/
+
+
+* Understanding the Data - Dataframes
+
+Output:
+    
+    [7x8] DataFrame
+
+        column   calories   sodium     fiber     carbo     sugars    potass     ...
+    0: mean     106.883117 159.675325 2.151948  14.597403 6.922078  96.077922  ...
+    1: stddev   19.484119  83.832295  2.383364  4.278956  4.444885  71.286813  ...
+    2: min      50.000000  0.000000   0.000000  -1.000000 -1.000000 -1.000000  ...
+    3: 25%      100.000000 130.000000 1.000000  12.000000 3.000000  40.000000  ...
+    4: 50%      110.000000 180.000000 2.000000  14.000000 7.000000  90.000000  ...
+    5: 75%      110.000000 210.000000 3.000000  17.000000 11.000000 120.000000 ...
+    6: max      160.000000 320.000000 14.000000 23.000000 15.000000 330.000000 ...
+        <string> <float>    <float>    <float>   <float>   <float>   <float>    ...
+
+    Not Showing: rating <float>
+
+
+* Understanding the Data - Visualizations
+
+- "gonum.org/v1/plot"
+- "gonum.org/v1/plot/plotter"
+- "gonum.org/v1/plot/vg"
+
+
+* Understanding the Data - Histogram
+
+.code code/visualize/histogram.go /START OMIT/,/END OMIT/
+
+
+* Understanding the Data - Correlation
+
+.code code/visualize/scatter.go /START OMIT/,/END OMIT/
+
+
+
+
+* Building the Model - Regression
+
+
+* Linear Regression
+.image img/sugars_scatter.png _ 580
+
+* Linear Regression
+.image img/sugars_regression_line.png _ 580
+
+
+* Data Versioning
+
+
+* Data Versioning
+.image img/dataVersioning.png _ 450
+.caption _Image_ from [[http://www.pachyderm.io/open_source.html][Pachyderm.io]]
+
+
+
+* Data Versioning
+.image img/provenance.png _ 450
+.caption _Image_ from [[http://www.pachyderm.io/open_source.html][Pachyderm.io]]
+
+
+* 
+.image img/pachyderm_logo.png _ 550
+[[http://www.pachyderm.io/]]
+
+
+* Deploying and Managing
+
+* Pipelines
+
+`model.json`:
+
+    {
+        "pipeline": {
+            "name": "model"
+        },
+        "transform": {
+            "image": "pskreter/train-req-model:multi",
+            "cmd": [
+            "/trainModel",
+            "-inFile=/pfs/training/training.csv",
+            "-outDir=/pfs/out"
+            ]
+        },
+        "input": {
+            "atom": {
+            "repo": "training",
+            "glob": "/"
+            }
+        }
+    }
+
+* Pipelines
+.image img/pipeline.png _ 1000
+
