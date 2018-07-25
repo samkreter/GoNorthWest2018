@@ -1,0 +1,12 @@
+{
+  "independent_variables": [
+    {
+      "name": "sugars",
+      "value": 5
+    },
+    {
+      "name": "calories",
+      "value": 90
+    }
+  ]
+}

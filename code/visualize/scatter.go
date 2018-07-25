@@ -32,10 +32,8 @@ func main() {
 	// Extract the target column.
 	yVals := df.Col("rating").Float()
 
-	colNames := []string{"calories", "sodium", "fiber", "carbo", "sugars", "potass", "rating"}
-
 	// Create a scatter plot for each of the features in the dataset.
-	for _, colName := range colNames {
+	for _, colName := range df.Names() {
 		// START OMIT
 		pts := make(plotter.XYs, df.Nrow())
 		for i, floatVal := range df.Col(colName).Float() {
@@ -55,16 +53,16 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		p.X.Label.Text = "Calories"
+		p.X.Label.Text = colName
 		p.Y.Label.Text = "Rating"
 		p.Add(plotter.NewGrid())
+		p.Add(s)
+		// END OMIT
 
 		// Save the plot to a PNG file.
-		p.Add(s)
 		err = p.Save(4*vg.Inch, 4*vg.Inch, filepath.Join(outputFolder, colName+"_scatter.png"))
 		if err != nil {
 			log.Fatal(err)
 		}
-		// END OMIT
 	}
 }

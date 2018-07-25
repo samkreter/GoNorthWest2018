@@ -49,15 +49,13 @@ func single() {
 		log.Fatal(err)
 	}
 
-	// In this case we are going to try and model our Sales
-	// by the TV and Radio features plus an intercept.
+	// START OMIT
 	var r regression.Regression
 	r.SetObserved("rating")
 	r.SetVar(0, "Sugars")
 
 	// Loop over the CSV records adding the training data.
 	for i, record := range trainingData {
-
 		// Skip the header.
 		if i == 0 {
 			continue
@@ -67,7 +65,6 @@ func single() {
 		if err != nil {
 			log.Fatal(err)
 		}
-
 		sugarsVal, err := strconv.ParseFloat(record[2], 64)
 		if err != nil {
 			log.Fatal(err)
@@ -76,6 +73,7 @@ func single() {
 		// Add these points to the regression value.
 		r.Train(regression.DataPoint(ratingVal, []float64{sugarsVal}))
 	}
+	// END OMIT
 
 	// Train the regression model.
 	r.Run()

@@ -65,7 +65,7 @@ func main() {
 	// Loop over the CSV records adding the training data.
 	for i, record := range trainingData {
 
-		// Skip the header.
+		// ignoring the header.
 		if i == 0 {
 			continue
 		}

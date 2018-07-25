@@ -15,7 +15,7 @@ import (
 
 var (
 	inputDataPath = "../data/cereal.csv"
-	outputFolder  = ""
+	outputFolder  = "./output"
 )
 
 func main() {
@@ -28,16 +28,14 @@ func main() {
 
 	df := dataframe.ReadCSV(f)
 
-	colNames := []string{"calories", "sodium", "fiber", "carbo", "sugars", "potass", "rating"}
-
-	for _, colName := range colNames {
+	for _, colName := range df.Names() {
 		// START OMIT
 		plotVals := make(plotter.Values, df.Nrow())
 		for i, floatVal := range df.Col(colName).Float() {
 			plotVals[i] = floatVal
 		}
 
-		h, err := plotter.NewHist(plotVals, 16)
+		h, err := plotter.NewHist(plotVals, 25)
 		if err != nil {
 			log.Fatal(err)
 		}

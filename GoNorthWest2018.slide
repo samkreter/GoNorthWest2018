@@ -6,18 +6,22 @@ Software Engineer - Microsoft
 Twitter: @samkreter
 Github: samkreter
 Email: samkreter@gmail.com
+Medium: samkreter
 
 * Notes
 
 The slides and code samples are available on [[https://github.com/samkreter/GoNorthWest2018]]
 
+We will be going fast through the code samples.
 
 
 * What Do We Mean by Modern
  
 1. Focus on the application
+
 2. Reproducability and Data Tracking
-3. Good Deployments
+
+3. Managable Deployment Cycles
 
 
 
@@ -27,7 +31,8 @@ The slides and code samples are available on [[https://github.com/samkreter/GoNo
 - Basic Data Science in Go
 - Data Versioning
 - Deploying
-- Scaling
+
+
 
 
 * Basic Data Science in Go
@@ -106,14 +111,57 @@ Output:
 
 
 
-* Building the Model - Regression
+* Building the Model 
+
+
 
 
 * Linear Regression
 .image img/sugars_scatter.png _ 580
 
+
 * Linear Regression
 .image img/sugars_regression_line.png _ 580
+
+
+* Linear Regression
+.image img/ymxb.png
+
+
+* Linear Regression - github.com/sajari/regression
+
+.code code/regression/regression.go /START OMIT/,/END OMIT/
+
+* Linear Regression
+
+Train 
+
+    r.Run()
+
+Predict
+
+    r.Predict([]float64{sugarVal})
+
+Export
+
+    r.Formula
+
+
+* Other Resources
+
+Statistics
+
+- https://github.com/gonum/gonum/stats
+
+General Machine Learning
+
+- https://github.com/sjwhitworth/golearn
+
+Neural Networks:
+
+- https://github.com/gorgonia/gorgonia
+
+
 
 
 * Data Versioning
@@ -124,18 +172,21 @@ Output:
 .caption _Image_ from [[http://www.pachyderm.io/open_source.html][Pachyderm.io]]
 
 
+* 
+.image img/pachyderm-go-k8s.png _ 950
+[[http://www.pachyderm.io/]]
 
-* Data Versioning
+
+
+* Data Provenance
 .image img/provenance.png _ 450
 .caption _Image_ from [[http://www.pachyderm.io/open_source.html][Pachyderm.io]]
 
 
-* 
-.image img/pachyderm_logo.png _ 550
-[[http://www.pachyderm.io/]]
 
 
 * Deploying and Managing
+
 
 * Pipelines
 

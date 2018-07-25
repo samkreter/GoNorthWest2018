@@ -27,7 +27,7 @@ type CoefficientInfo struct {
 // PredictionData includes the data necessary to make
 // a prediction and encodes the output prediction.
 type PredictionData struct {
-	Prediction      float64          `json:"predicted_diabetes_progression"`
+	Prediction      float64          `json:"predicted_rating"`
 	IndependentVars []IndependentVar `json:"independent_variables"`
 }
 
