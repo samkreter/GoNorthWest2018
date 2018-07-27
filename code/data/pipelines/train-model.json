@@ -3,7 +3,7 @@
     "name": "model"
   },
   "transform": {
-    "image": "pskreter/train-req-model:multi-1",
+    "image": "pskreter/train-req-model:1.0.3",
     "cmd": [
       "/trainModel",
       "-inFile=/pfs/training/training.csv",

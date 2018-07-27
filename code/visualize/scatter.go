@@ -41,13 +41,6 @@ func main() {
 			pts[i].Y = yVals[i]
 		}
 
-		s, err := plotter.NewScatter(pts)
-		if err != nil {
-			log.Fatal(err)
-		}
-		s.GlyphStyle.Color = color.RGBA{R: 233, B: 0, A: 255}
-		s.GlyphStyle.Radius = vg.Points(3)
-
 		// Create the plot.
 		p, err := plot.New()
 		if err != nil {
@@ -56,6 +49,14 @@ func main() {
 		p.X.Label.Text = colName
 		p.Y.Label.Text = "Rating"
 		p.Add(plotter.NewGrid())
+
+		s, err := plotter.NewScatter(pts)
+		if err != nil {
+			log.Fatal(err)
+		}
+		s.GlyphStyle.Color = color.RGBA{R: 233, B: 0, A: 255}
+		s.GlyphStyle.Radius = vg.Points(3)
+
 		p.Add(s)
 		// END OMIT
 

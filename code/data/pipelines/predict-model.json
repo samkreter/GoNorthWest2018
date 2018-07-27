@@ -3,7 +3,7 @@
     "name": "prediction"
   },
   "transform": {
-    "image": "pskreter/predict-req:1.0.1",
+    "image": "pskreter/predict-req:1.0.3",
     "cmd": [
       "/predict",
       "-modelDir=/pfs/model",
